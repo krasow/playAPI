@@ -21,6 +21,6 @@ from pages.views import (
 )
 urlpatterns = [
     path('', cat_view, name="home"),
-    path('/verify', verify_cat, name="verify"),
+    path('verify/', verify_cat, name="verify"),
     path('admin/', admin.site.urls),
 ]

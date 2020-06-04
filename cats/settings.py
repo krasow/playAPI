@@ -33,7 +33,6 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     #own
     'pages',
-    'phone_field',
 
     'django.contrib.admin',
     'django.contrib.auth',

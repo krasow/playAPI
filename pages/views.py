@@ -55,7 +55,6 @@ def cat_view(request):
                          .create(to=form.cleaned_data['to'], channel='sms')
 
                 obj = form.save(commit=False)
-                author = request.user
                 obj.sid = service.sid
                 obj.save()
                 form.save()
