@@ -9,29 +9,25 @@
 </style>
 <title>Cat WORLD</title>
 <div class="container">
-  <div class="jumbotron">
-    <h2>Cat WORLD</h2>
+  <form method="POST">{% csrf_token %}
+    <button class="btn btn-lg btn-primary btn" name="getcat" type="submit">Get Cat</button>
+  </form>
+  <br>
+  <div class="container m-auto">
+    <img class="imgprop" src="{{image_url}}">
   </div>
-
-<form method="POST">{% csrf_token %}
-  <button class="btn btn-lg btn-primary btn" name="getcat" type="submit">Get Cat</button>
-</form>
-<br>
-<div class="container m-auto">
-  <img class="imgprop" src="{{image_url}}">
-</div>
-<br><hr>
-<form method="POST">{% csrf_token %}
-  <button class="btn btn-lg btn-primary btn" name="getcatfact" type="submit">Get Cat Fact</button>
-</form>
-<br>
-<h4 class='m-auto'> {{cat_fact}} </h4>
-<br><hr>
-<form method="POST">
-    {% csrf_token %}
-    {{form.as_p}}
-    <button class="btn btn-lg btn-primary btn" name="sendcat" type="submit">Send Cat Fact and Image</button>
-</form>
+  <br><hr>
+  <form method="POST">{% csrf_token %}
+    <button class="btn btn-lg btn-primary btn" name="getcatfact" type="submit">Get Cat Fact</button>
+  </form>
+  <br>
+  <h4 class='m-auto'> {{cat_fact}} </h4>
+  <br><hr>
+  <form method="POST">
+      {% csrf_token %}
+      {{form.as_p}}
+      <button class="btn btn-lg btn-primary btn" name="sendcat" type="submit">Send Cat Fact and Image</button>
+  </form>
 </div>
 
 {% endblock %}

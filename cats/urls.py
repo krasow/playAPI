@@ -17,8 +17,10 @@ from django.contrib import admin
 from django.urls import path
 from pages.views import (
             cat_view,
+            verify_cat,
 )
 urlpatterns = [
     path('', cat_view, name="home"),
+    path('/verify', verify_cat, name="verify"),
     path('admin/', admin.site.urls),
 ]
