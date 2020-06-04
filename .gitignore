@@ -3,3 +3,6 @@
 *api.py
 *pages/api.py
 */venv
+venv
+.vscode
+__pycache__

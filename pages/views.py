@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 import json
 import requests
+import random
 from twilio.rest import Client
 from .models import PhoneModel
 from .forms import PhoneForm, VerifyForm
@@ -59,6 +60,19 @@ def cat_view(request):
                 obj.save()
                 form.save()
                 return redirect ('verify')
+
+    elif 'getcatsong' in request.POST:
+        response = requests.get('https://api.deezer.com/search?q=track:"cat"')
+        numResults = response.json()['total']
+
+        payload = {'q': 'track:\"cat\"', 'index': random.randint(0, numResults-1)}
+        response = requests.get('https://api.deezer.com/search', params=payload)
+        content = response.json()['data'][random.randint(0,24)]
+        songName = content['title']
+        artist = content['artist']['name']
+        albumURL = content['album']['cover_xl']
+        return render(request,"index.html", {"songName": songName, "artist": artist, "albumURL": albumURL, "form": form})
+
     return render(request,"index.html", {"form":form})
 
 

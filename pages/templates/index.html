@@ -28,6 +28,18 @@
       {{form.as_p}}
       <button class="btn btn-lg btn-primary btn" name="sendcat" type="submit">Send Cat Fact and Image</button>
   </form>
+  <br><hr>
+  <form method="POST">{% csrf_token %}
+    <button class="btn btn-lg btn-primary btn" name="getcatsong" type="submit">Get Cat Song</button>
+  </form>
+  <br>
+  <div class="container m-auto">
+    <img class="imgprop" src="{{albumURL}}">
+  </div>
+  <br>
+  <h4 class='m-auto'> Song: {{songName}} </h4>
+  <br>
+  <h4 class='m-auto'> Artist: {{artist}} </h4>
 </div>
 
 {% endblock %}
