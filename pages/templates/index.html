@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+<style type="text/css">
+  .imgprop{
+    width: 800px;
+    max-width: 1000px;
+  }
+</style>
+<h1> Hello world</h1>
+<form method="POST">{% csrf_token %}
+  <button class="btn btn-lg btn-primary btn" name="getcat" type="submit">Get Cat</button>
+</form>
+
+<div class="container m-auto">
+  <img class="imgprop" src="{{image_url}}">
+</div>
+
+<form method="POST">{% csrf_token %}
+  <button class="btn btn-lg btn-primary btn" name="getcatfact" type="submit">Get Cat Fact</button>
+</form>
+<p class='m-auto'> {{cat_fact}} </p>
+
+<form method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button class="btn btn-lg btn-primary btn" name="sendcat" type="submit">Send Cat Fact and Image</button>
+</form>
+
+
+{% endblock %}
