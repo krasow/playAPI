@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect
 import json
 import requests
-from .forms import PhoneForm
 from twilio.rest import Client
 from .models import PhoneModel
+from .forms import PhoneForm
+from .api import sid, token
 # Create your views here.
 
 def cat_view(request):
@@ -34,14 +35,17 @@ def cat_view(request):
             content_text = response.json()
             cat_fact = content_text['text']
 
-            account_sid = 'AC25ca77208be7bb8ceaf5519050be11e5'
-            auth_token = 'd8c96c959f8c9c7086b60c2b999b1d0e'
+            account_sid = sid
+            auth_token = token
             client = Client(account_sid, auth_token)
+
             message = client.messages.create(
                 body= cat_fact,
-                from_='+16122556455',
+                from_='+12036338841',
                 media_url= image_url,
                 to= obj.to,
             )
+
             return redirect('home')
+
     return render(request,"index.html", {"form":form})

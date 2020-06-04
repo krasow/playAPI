@@ -1,2 +1,4 @@
 *Pipfile
 *Pipfile.lock
+*api.py
+*pages/api.py
