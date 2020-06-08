@@ -1,7 +1,10 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
 <style type="text/css">
   .imgprop{
+    padding-right: 5%;
+    padding-left: 5%;
     width: 1000px;
     max-height: 400px;
     max-width: 1000px;
@@ -10,40 +13,69 @@
     width: 400px;
     max-height: 400px;
   }
+  .longfrontimage1 {
+    height: 400px;
+    width: 100%;
+    background-image: linear-gradient(to right, rgba(245, 246, 252, 0.35), rgba(104, 40, 96, 0.76)), url({% static 'bacon.jpg' %});
+    background-size: cover;
+    text-align: center;
+    }
+  .longfrontimage1 h1 {
+    font-size: 100px;
+    color: white;
+    padding-top: 250px;
+  }
+  .row {
+    margin-right: 35% !important;
+    margin-left: 35% !important;
+  }
 </style>
 <title>Cat WORLD</title>
-<div class="container">
-  <form method="POST">{% csrf_token %}
-    <button class="btn btn-lg btn-primary btn" name="getcat" type="submit">Get Cat</button>
-  </form>
-  <br>
-  <div class="container m-auto">
-    <img class="imgprop" src="{{image_url}}">
-  </div>
-  <br><hr>
-  <form method="POST">{% csrf_token %}
-    <button class="btn btn-lg btn-primary btn" name="getcatfact" type="submit">Get Cat Fact</button>
-  </form>
-  <br>
-  <h4 class='m-auto'> {{cat_fact}} </h4>
-  <br><hr>
-  <form method="POST">
-      {% csrf_token %}
-      {{form.as_p}}
-      <button class="btn btn-lg btn-primary btn" name="sendcat" type="submit">Send Cat Fact and Image</button>
-  </form>
-  <br><hr>
-  <form method="POST">{% csrf_token %}
-    <button class="btn btn-lg btn-primary btn" name="getcatsong" type="submit">Get Cat Song</button>
-  </form>
-  <br>
-  <div class="container m-auto">
-    <img class="albumprop" src="{{albumURL}}">
-  </div>
-  <br>
-  <h4 class='m-auto'> Song: {{songName}} </h4>
-  <br>
-  <h4 class='m-auto'> Artist: {{artist}} </h4>
+<div class="longfrontimage1">
+    <h1>Cat WORLD</h1>
 </div>
+<div class="row container">
+  <div class="col-xs-2 previous">
+    <form method="POST">
+      {% csrf_token %}
+      <button class="btn-group btn-lg btn-primary" name="getcat" type="submit">Get Cat</button>
+    </form>
+  </div>
+
+  <div class="col-xs-2 next">
+    <form method="POST">{% csrf_token %}
+      <button class="btn-group btn-lg btn-primary" name="getcatfact" type="submit">Get Cat Fact</button>
+    </form>
+  </div>
+
+  <div class="col-xs-2 next">
+    <form method="POST">
+      {% csrf_token %}
+      <button class="btn-group btn-lg btn-primary" name="getcatsong" type="submit">Get Cat Song</button>
+    </form>
+  </div>
+
+  <div class="col-xs-2 next">
+    <form method="POST">
+        <button class="btn btn-lg btn-primary btn" name="sendcat" type="submit">Send Cat Fact and Image</button>
+        {% csrf_token %}
+        {{form.as_p}}
+    </form>
+  </div>
+
+</div>
+
+<div class="container">
+  <img class="imgprop" src="{{image_url}}">
+  <h4 class='m-auto'> {{cat_fact}} </h4>
+  {% if songName %}
+    <div class="row">
+        <img class="albumprop" src="{{albumURL}}">
+        <h4 class='m-auto'> Song: {{songName}} </h4><br>
+        <h4 class='m-auto'> Artist: {{artist}} </h4>
+    </div>
+  {% endif %}
+</div>
+
 
 {% endblock %}
