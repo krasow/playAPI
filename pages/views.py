@@ -68,10 +68,11 @@ def cat_view(request):
         payload = {'q': 'track:\"cat\"', 'index': random.randint(0, numResults-1)}
         response = requests.get('https://api.deezer.com/search', params=payload)
         content = response.json()['data'][random.randint(0,24)]
+        songID = content['id']
         songName = content['title']
         artist = content['artist']['name']
         albumURL = content['album']['cover_xl']
-        return render(request,"index.html", {"songName": songName, "artist": artist, "albumURL": albumURL, "form": form})
+        return render(request,"index.html", {"songName": songName, "artist": artist, "albumURL": albumURL, "form": form, "songID": songID})
 
     return render(request,"index.html", {"form":form})
 
