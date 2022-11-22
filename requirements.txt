@@ -23,7 +23,7 @@ networkx==2.4
 numpy==1.18.4
 packaging==20.3
 pep517==0.8.2
-Pillow==7.1.2
+Pillow==9.3.0
 progress==1.5
 PyJWT==1.7.1
 pyparsing==2.4.6
